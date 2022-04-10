@@ -1,0 +1,60 @@
+<div class="home">
+  <div class="home__toolbox">
+    <div class="home__toolbox-section-title">Please select column to filter</div>
+
+    <form *ngIf="filterForm" class="home__toolbox-form" [formGroup]="filterForm">
+      <!-- Column select -->
+      <mat-form-field appearance="fill" *ngIf="columns?.length">
+        <mat-label>Column</mat-label>
+        <mat-select formControlName="column" (selectionChange)="resetOperatorSelection()">
+          <mat-option *ngFor="let column of columns" [value]="column">
+            {{ column.title }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Operator select -->
+      <mat-form-field appearance="fill" *ngIf="columns?.length">
+        <mat-label>Filter</mat-label>
+        <mat-select formControlName="operator">
+          <ng-container *ngFor="let operator of operators">
+            <mat-option
+              *ngIf="!operator.availableOnlyFor || !filterForm.value.column || operator.availableOnlyFor === filterForm.value.column.type"
+              [value]="operator"
+            >
+              {{ operator.title }}
+            </mat-option>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Filter value -->
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Filter value</mat-label>
+        <input matInput formControlName="value" />
+      </mat-form-field>
+
+      <button mat-raised-button [disabled]="filterForm.invalid" (click)="filterProducts()">Apply filter</button>
+    </form>
+
+    <!-- Applied filters -->
+    <div class="home__toolbox-selected-filters" *ngIf="filterColumns?.length">
+      <div class="home__toolbox-section-title">Applied filters</div>
+
+      <mat-chip-list #chipList aria-label="Applied filters">
+        <mat-chip *ngFor="let filter of filterColumns; let index = index" (removed)="removeFilter(index)">
+          {{ filter.columnName + ' is ' + filter.operatorName + ' ' + filter.value }}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip>
+      </mat-chip-list>
+
+      <button mat-raised-button (click)="clearFilters()">Clear filters</button>
+    </div>
+  </div>
+
+  <div class="home__table" *ngIf="columns">
+    <app-table [data]="filteredProducts" [columnsDef]="columns"></app-table>
+  </div>
+</div>

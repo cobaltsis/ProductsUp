@@ -1,10 +1,33 @@
-# ProductsupTask
+# ProductsUp Frontend Case Study Coding Task
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.3.
+This is my solution for the PorductsUp Case Study Task with goal to create a table with toolbox which allows users to filter provided data in table.
+
+## Note
+
+For this project I added Angular Material because it provides a lot of useful components like table with pagination and sorting, and decent looking forms with input and select fields, and validation features. On the development side of application, I added some dependencies which are useful for linting and code formatting.
+
+There are things which could be also implemented:
+
+- integration with router, so every filter and selection could be memorized, shared, and accessed trough URL query params 
+- mechanism to check compatible filters, so user can't use filters that counteract each other
+- sidebar usually should be separate component included in page
+- items per page selector (dropdown) so user can change number of the visible rows per page
+- image and video preview instead of opening in new tab/window
+- loading indicator / placeholder
+- it would be nice to have predefined lists of available categories, genders, sizes etc. 
+
+## Requirements
+
+This application requires Node and Angular CLI installed on machine
+
+## Installation
+
+In terminal, navigate to projects root folder and run `npm i` to install all required dependencies
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+To start application, run `ng serve` command in terminal inside projects root folder for a dev server, and than navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.3.
 
 ## Code scaffolding
 

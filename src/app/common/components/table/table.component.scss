@@ -1,0 +1,35 @@
+.table {
+    display: block;
+    position: relative;
+    width: 100%;
+
+    &__wrapper {
+        display: block;
+        overflow-x: auto;
+        position: relative;
+        width: 100%;
+    }
+
+    &__table {
+        min-width: 100%;
+    }
+
+    &__header {
+        min-width: 200px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        &:first-of-type {
+            min-width: 30px;
+        }
+    }
+
+    &__cell {
+        padding: 10px 5px;
+    }
+
+    &__image,
+    &__video {
+        height: 75px;
+    }
+}

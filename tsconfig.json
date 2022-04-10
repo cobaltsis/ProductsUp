@@ -1,6 +1,7 @@
 /* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
+  "exclude": ["node_modules", "dist"],
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
@@ -16,12 +17,19 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
+    "emitDecoratorMetadata": true,
+    "skipLibCheck": true,
+    "typeRoots": ["node_modules/@types"],
     "target": "es2017",
     "module": "es2020",
-    "lib": [
-      "es2020",
-      "dom"
-    ]
+    "lib": ["es2020", "dom"],
+    "paths": {
+      "@env/*": ["src/environments/*"],
+      "@common/*": ["src/app/common/*"],
+      "@home/*": ["src/app/home/*"],
+      "@app/*": ["src/app/*"],
+      "@src/*": ["src/*"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

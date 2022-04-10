@@ -1,0 +1,45 @@
+.home {
+    position: relative;
+    width: 100%;
+    display: block;
+    padding: 20px;
+    box-sizing: border-box;
+
+    &__toolbox {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        bottom: 0;
+        width: 300px;
+        max-width: 25%;
+        display: block;
+        background-color: #eeeeee;
+        overflow-y: auto;
+        -webkit-box-shadow: -1px 8px 10px 5px #dddddd;
+        box-shadow: -1px 8px 10px 5px #dddddd;
+        box-sizing: border-box;
+        padding: 20px;
+
+        &-section-title {
+            margin: 10px;
+        }
+
+        mat-form-field {
+            width: 100%;
+        }
+
+        .mat-raised-button {
+            float: right;
+        }
+
+        &-selected-filters {
+            margin-top: 80px;
+            width: 100%;
+            border-top: darkgrey 1px solid;
+
+            .mat-raised-button {
+                margin-top: 15px;
+            }
+        }
+    }
+}

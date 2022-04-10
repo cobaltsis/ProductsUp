@@ -1,0 +1,56 @@
+<div class="table">
+  <mat-paginator
+    *ngIf="data?.length"
+    class="table__paginator"
+    [class.table__paginator--visible]="data?.length && dataLength > pageSize"
+    [hidePageSize]="true"
+    (page)="pageChanged($event)"
+    [pageSize]="pageSize"
+    [pageIndex]="currentPageIndex"
+    [length]="dataLength"
+  >
+  </mat-paginator>
+
+  <div class="table__wrapper" *ngIf="dataSource && columns?.length">
+    <table
+      mat-table
+      matSort
+      [matSortActive]="currentSortColumn"
+      [matSortDirection]="currentSortDirection"
+      (matSortChange)="sortChanged()"
+      [dataSource]="data?.length ? dataSource : null"
+      class="table__table"
+    >
+      <ng-container *ngFor="let columnDef of columnsDef">
+        <ng-container [matColumnDef]="columnDef.valueKey">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef class="table__header">
+            {{ columnDef.title }}
+          </th>
+
+          <td #cell mat-cell *matCellDef="let row; let index = index" class="table__cell">
+            <ng-container *ngIf="row[columnDef.valueKey] && row[columnDef.valueKey] !== ''; else nodata">
+              <span *ngIf="columnDef.type === 'text' || columnDef.type === 'number'">
+                {{ row[columnDef.valueKey] }}
+              </span>
+
+              <a *ngIf="columnDef.type === 'image'" [href]="row[columnDef.valueKey]" target="_blank">
+                <img class="table__image" [src]="row[columnDef.valueKey]" />
+              </a>
+
+              <a *ngIf="columnDef.type === 'link'" [href]="row[columnDef.valueKey]" target="_blank" class="table__link">
+                {{ columnDef.label ? columnDef.label : row[columnDef.valueKey] }}
+              </a>
+
+              <video class="table__video" *ngIf="columnDef.type === 'video'" controls [src]="row[columnDef.valueKey]"></video>
+            </ng-container>
+
+            <ng-template #nodata> -- </ng-template>
+          </td>
+        </ng-container>
+      </ng-container>
+
+      <tr class="table__header-row" mat-header-row *matHeaderRowDef="columns"></tr>
+      <tr class="table__row" mat-row *matRowDef="let row; columns: columns"></tr>
+    </table>
+  </div>
+</div>
